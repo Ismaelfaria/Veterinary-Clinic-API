@@ -2,7 +2,7 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.IUpdate
 {
-    public interface UpdateClient
+    public interface IUpdateClient
     {
         Client Update(string firstName, string lastName,
             int contactNumber, int cpf, string typeOfAnimal, string nameAnimal,

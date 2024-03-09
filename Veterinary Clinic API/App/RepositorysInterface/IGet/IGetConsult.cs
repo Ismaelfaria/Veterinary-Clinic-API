@@ -2,9 +2,9 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.IGet
 {
-    public interface IGetClient
+    public interface IGetConsult
     {
-        IEnumerable<Client> FindAll();
-        Client FindByUserName();
+        IEnumerable<Consultation> FindAll();
+        Consultation FindByIdConsult();
     }
 }

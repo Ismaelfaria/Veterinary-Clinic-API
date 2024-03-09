@@ -11,21 +11,20 @@
         public string LastName { get; set; }
         public int ContactNumber { get; set; }
         public int Cpf { get; set; }
-        public int EmployeeRegistration { get; set; }
         public DateTime DateofRegistration { get; set; }
         public bool IsDeleted { get; set; }
 
-        public void UpdateSecretariat(string firstName, string lastName, int contactNumber, int cpf, int employeeRegistration)
+        public void UpdateSecretariat(string firstName, string lastName, int contactNumber, int cpf)
         {
             FirstName = firstName;
             LastName = lastName;
             ContactNumber = contactNumber;
             Cpf = cpf;
-            EmployeeRegistration = employeeRegistration;
+
+
         }
-        public void Delete()
+        public void DeleteSecretariat()
         {
             IsDeleted = true;
         }
     }
-}

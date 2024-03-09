@@ -4,7 +4,7 @@
     {
         public Doctor()
         {
-            
+            IsDeleted = false;
         }
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -22,7 +22,7 @@
             Cpf = cpf;
             DoctorRegistration = doctorRegistration;
         }
-        public void Delete()
+        public void DeleteDoctor()
         {
             IsDeleted = true;
         }
