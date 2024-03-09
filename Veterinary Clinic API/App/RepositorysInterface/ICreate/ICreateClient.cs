@@ -4,6 +4,6 @@ namespace Veterinary_Clinic_API.App.RepositorysInterface.ICreate
 {
     public interface ICreateClient
     {
-        Client Create(Client client);
+        void Create(Client client);
     }
 }

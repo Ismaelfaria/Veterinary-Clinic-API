@@ -11,5 +11,6 @@ namespace Veterinary_Clinic_API.Infra.Context
         public DbSet<Client> Client { get; set; }
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Secretariat> Secretariat { get; set; }
+        public DbSet<Consultation> Consult { get; set; }
     }
 }

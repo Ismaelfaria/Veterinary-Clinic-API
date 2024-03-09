@@ -4,6 +4,6 @@ namespace Veterinary_Clinic_API.App.RepositorysInterface.ICreate
 {
     public interface ICreateDoctor
     {
-        Doctor Create(Doctor doctor);
+        void Create(Doctor doctor);
     }
 }

@@ -1,11 +1,18 @@
 ﻿
 using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
 using Veterinary_Clinic_API.Domain.Entitys;
+using Veterinary_Clinic_API.Infra.Context;
 
 public class CreateClient : ICreateClient
 {
-    public Client Create(Client client)
+    private readonly ContextVeterinaryClinic _context;
+    public CreateClient(ContextVeterinaryClinic context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public void Create(Client client)
+    {
+        _context.Client.Add(client);
+        _context.SaveChanges();
     }
 }

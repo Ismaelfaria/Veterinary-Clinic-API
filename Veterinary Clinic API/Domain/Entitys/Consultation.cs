@@ -6,7 +6,7 @@
         {
             ConsultationTerminated = false;
         }
-        public Guid IdConsultaation { get; set; }
+        public Guid IdConsultation { get; set; }
         public int CpfClient { get; set; }
         public string Symptoms { get; set; }
         public int RegisterDoctor { get; set; }

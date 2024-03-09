@@ -1,11 +1,25 @@
 ﻿
 using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
+using Veterinary_Clinic_API.Infra.Context;
 
 public class DeleteSecretariat : IDeleteSecretariat
 {
-    public bool Delete(Guid id)
+    private readonly ContextVeterinaryClinic _context;
+    public DeleteSecretariat(ContextVeterinaryClinic context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public bool Delete(Guid Id)
+    {
+        var userDatabase = _context.Secretariat.SingleOrDefault(de => de.Id == Id);
+        if (userDatabase == null)
+        {
+            return false;
+        }
+
+        userDatabase.DeleteSecretariat();
+        _context.SaveChanges();
+        return true;
     }
 }
 
