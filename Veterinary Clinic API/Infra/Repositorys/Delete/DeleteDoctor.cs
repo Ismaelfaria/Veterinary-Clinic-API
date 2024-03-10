@@ -10,17 +10,14 @@ public class DeleteDoctor : IDeleteDoctorR
     {
         _context = context;
     }
-    public bool Delete(Guid id)
+    public void Delete(Guid id)
     {
-        var userDatabase = _context.Doctor.SingleOrDefault(de => de.Id == Id);
-        if (userDatabase == null)
-        {
-            return false;
-        }
+        var userDatabase = _context.Doctor.SingleOrDefault(de => de.Id == id);
+       
 
         userDatabase.DeleteDoctor();
         _context.SaveChanges();
-        return true;
+        
     }
 }
 

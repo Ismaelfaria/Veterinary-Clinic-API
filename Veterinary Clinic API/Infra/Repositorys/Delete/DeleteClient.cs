@@ -9,17 +9,12 @@ public class DeleteClient : IDeleteClientR
     {
         _context = context;
     }
-    public bool Delete(Guid id)
+    public void Delete(Guid id)
     {
         var userDatabase = _context.Client.SingleOrDefault(de => de.Id == id);
-        if(userDatabase == null)
-        {
-            return false;
-        }
 
         userDatabase.Delete();
         _context.SaveChanges();
-        return true;
     }
 }
 

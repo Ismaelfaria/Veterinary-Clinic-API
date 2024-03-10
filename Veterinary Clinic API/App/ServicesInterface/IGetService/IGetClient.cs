@@ -5,6 +5,6 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IGetService
     public interface IGetClient
     {
         IEnumerable<Client> FindAll();
-        Client FindByUserName();
+        Client FindByUserName(string name);
     }
 }

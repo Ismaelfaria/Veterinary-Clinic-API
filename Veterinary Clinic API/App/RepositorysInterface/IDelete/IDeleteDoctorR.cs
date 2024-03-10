@@ -2,6 +2,6 @@
 {
     public interface IDeleteDoctorR
     {
-        bool Delete(Guid id);
+        void Delete(Guid id);
     }
 }

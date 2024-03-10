@@ -9,17 +9,14 @@ public class DeleteSecretariat : IDeleteSecretariatR
     {
         _context = context;
     }
-    public bool Delete(Guid Id)
+    public void Delete(Guid Id)
     {
         var userDatabase = _context.Secretariat.SingleOrDefault(de => de.Id == Id);
-        if (userDatabase == null)
-        {
-            return false;
-        }
+        
 
         userDatabase.DeleteSecretariat();
         _context.SaveChanges();
-        return true;
+        
     }
 }
 

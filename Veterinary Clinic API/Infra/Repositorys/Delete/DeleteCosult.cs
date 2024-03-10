@@ -10,17 +10,14 @@ namespace Veterinary_Clinic_API.Infra.Repositorys.Delete
         {
             _context = context;
         }
-        public bool DeleteAndTerminated(Guid idConsultation)
+        public void DeleteAndTerminated(Guid idConsultation)
         {
             var userDatabase = _context.Consult.SingleOrDefault(de => de.IdConsultation == idConsultation);
-            if (userDatabase == null)
-            {
-                return false;
-            }
+            
 
             userDatabase.DeleteConsultation();
             _context.SaveChanges();
-            return true;
+    
         }
     }
 }

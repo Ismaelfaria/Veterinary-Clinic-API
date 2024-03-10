@@ -2,6 +2,6 @@
 {
     public interface IDeleteConsult
     {
-        bool DeleteAndTerminated(Guid idConsultation);
+        void DeleteAndTerminated(Guid idConsultation);
     }
 }

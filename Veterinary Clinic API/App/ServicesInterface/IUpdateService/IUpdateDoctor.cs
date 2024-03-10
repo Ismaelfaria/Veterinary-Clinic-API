@@ -4,6 +4,6 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IUpdateService
 {
     public interface IUpdateDoctor
     {
-        Doctor Update(string firstName, string lastName, int contactNumber, int cpf, int doctorRegistration);
+        void Update(string firstName, string lastName, int contactNumber, int cpf, int doctorRegistration);
     }
 }

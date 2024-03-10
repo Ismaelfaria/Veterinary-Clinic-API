@@ -4,8 +4,6 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IUpdateService
 {
     public interface IUpdateClient
     {
-        Client Update(string firstName, string lastName,
-            int contactNumber, int cpf, string typeOfAnimal, string nameAnimal,
-            string sexAnimal, int ageAnimal);
+        void Update(int cpf, Client client );
     }
 }

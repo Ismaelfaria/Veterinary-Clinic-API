@@ -2,6 +2,6 @@
 {
     public interface IDeleteSecretariat
     {
-        bool Delete(Guid id);
+        void Delete(Guid id);
     }
 }

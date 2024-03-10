@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="App\UseCases\" />
+    <Folder Include="App\UseCases\ConsultService\" />
+    <Folder Include="App\UseCases\DoctorService\" />
+    <Folder Include="App\UseCases\SecretariatService\" />
     <Folder Include="Infra\Controllers\" />
   </ItemGroup>
 
