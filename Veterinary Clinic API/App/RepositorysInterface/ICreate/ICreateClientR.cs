@@ -2,8 +2,9 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.ICreate
 {
-    public interface CreateSecretariat
+    public interface ICreateClientR
+
     {
-        void Create(Secretariat secretariat);
+        void Create(Client client);
     }
 }

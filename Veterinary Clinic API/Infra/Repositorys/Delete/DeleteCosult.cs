@@ -3,7 +3,7 @@ using Veterinary_Clinic_API.Infra.Context;
 
 namespace Veterinary_Clinic_API.Infra.Repositorys.Delete
 {
-    public class DeleteCosult : IDeleteConsult
+    public class DeleteCosult : IDeleteConsultR
     {
         private readonly ContextVeterinaryClinic _context;
         public DeleteCosult(ContextVeterinaryClinic context)

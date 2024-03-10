@@ -3,7 +3,7 @@ using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
 using Veterinary_Clinic_API.Domain.Entitys;
 using Veterinary_Clinic_API.Infra.Context;
 
-public class CreateClient : ICreateClient
+public class CreateClient : ICreateClientR
 {
     private readonly ContextVeterinaryClinic _context;
     public CreateClient(ContextVeterinaryClinic context)

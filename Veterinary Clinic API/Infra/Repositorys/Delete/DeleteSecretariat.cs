@@ -2,7 +2,7 @@
 using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.Infra.Context;
 
-public class DeleteSecretariat : IDeleteSecretariat
+public class DeleteSecretariat : IDeleteSecretariatR
 {
     private readonly ContextVeterinaryClinic _context;
     public DeleteSecretariat(ContextVeterinaryClinic context)

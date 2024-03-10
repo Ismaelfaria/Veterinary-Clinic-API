@@ -1,18 +1,22 @@
 ﻿
-
+using Microsoft.EntityFrameworkCore;
 using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
 using Veterinary_Clinic_API.Domain.Entitys;
+using Veterinary_Clinic_API.Infra.Context;
 
-public class UpdateClient : IUpdateConsult
+public class UpdateClient : IUpdateClientR
 {
-    public Client Update(string firstName, string lastName, int contactNumber, int cpf, string typeOfAnimal, string nameAnimal, string sexAnimal, int ageAnimal)
+    private readonly ContextVeterinaryClinic _context;
+    public UpdateClient(ContextVeterinaryClinic context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
-
-    public Consultation Update(int cpfClient, string symptoms, int registerDoctor, List<string> exames, string resultOfTheConsultation)
+    public void Update(int cpf, Client client)
     {
-        throw new NotImplementedException();
+        var userDatabase = _context.Client.SingleOrDefault(de => de.Cpf == cpf);
+
+        userDatabase.UpdateClient(client.FirstName, client.LastName,client.ContactNumber, client.Cpf, client.TypeOfAnimal, client.NameAnimal, client.SexAnimal, client.AgeAnimal);
+        _context.SaveChanges();
     }
 }
 

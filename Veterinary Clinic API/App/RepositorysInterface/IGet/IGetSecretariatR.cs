@@ -2,9 +2,10 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.IGet
 {
-    public interface IGetSecretariat
+    public interface IGetSecretariatR
     {
         IEnumerable<Secretariat> FindAll();
-        Secretariat FindByUserName();
+        Secretariat FindByUserName(string name);
+        Secretariat FindByCpf(int cpf);
     }
 }

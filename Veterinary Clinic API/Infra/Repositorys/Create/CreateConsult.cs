@@ -4,7 +4,7 @@ using Veterinary_Clinic_API.Infra.Context;
 
 namespace Veterinary_Clinic_API.Infra.Repositorys.Create
 {
-    public class CreateConsult : ICreateConsult
+    public class CreateConsult : ICreateConsultR
     {
         private readonly ContextVeterinaryClinic _context;
         public CreateConsult(ContextVeterinaryClinic context)

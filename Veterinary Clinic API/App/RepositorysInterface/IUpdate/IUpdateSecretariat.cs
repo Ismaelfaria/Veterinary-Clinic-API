@@ -2,8 +2,8 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.IUpdate
 {
-    public interface IUpdateSecretariat
+    public interface IUpdateSecretariatR
     {
-        Secretariat Update(string firstName, string lastName, int contactNumber, int cpf, int employeeRegistration);
+        void Update(Guid id, Secretariat secretariat);
     }
 }

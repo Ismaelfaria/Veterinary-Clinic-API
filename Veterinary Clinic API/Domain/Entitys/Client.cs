@@ -17,7 +17,7 @@
         public int AgeAnimal { get; set; }
         public DateTime DateofRegistration { get; set; }
         public bool IsDeleted { get; set; }
-        public void UpdateDoctor(string firstName, string lastName, 
+        public void UpdateClient(string firstName, string lastName, 
             int contactNumber, int cpf, string typeOfAnimal, string nameAnimal,
             string sexAnimal, int ageAnimal)
         {

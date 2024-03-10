@@ -1,6 +1,6 @@
 ﻿namespace Veterinary_Clinic_API.App.RepositorysInterface.IDelete
 {
-    public interface IDeleteDoctor
+    public interface IDeleteClientR
     {
         bool Delete(Guid id);
     }

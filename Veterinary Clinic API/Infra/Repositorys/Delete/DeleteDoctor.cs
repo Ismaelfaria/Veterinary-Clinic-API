@@ -3,7 +3,7 @@ using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.Domain.Entitys;
 using Veterinary_Clinic_API.Infra.Context;
 
-public class DeleteDoctor : IDeleteDoctor
+public class DeleteDoctor : IDeleteDoctorR
 {
     private readonly ContextVeterinaryClinic _context;
     public DeleteDoctor(ContextVeterinaryClinic context)

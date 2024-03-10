@@ -1,12 +1,21 @@
 ﻿
+using System;
 using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
 using Veterinary_Clinic_API.Domain.Entitys;
+using Veterinary_Clinic_API.Infra.Context;
 
-public class UpdateDoctor : IUpdateDoctor
+public class UpdateDoctor : IUpdateDoctorR
 {
-    public Doctor Update(string firstName, string lastName, int contactNumber, int cpf, int doctorRegistration)
+    private readonly ContextVeterinaryClinic _context;
+    public UpdateDoctor(ContextVeterinaryClinic context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public void Update(Guid id, Doctor doctor)
+    {
+        var userDatabase = _context.Doctor.SingleOrDefault(de => de.Id == id);
+        userDatabase.UpdateDoctor(doctor.FirstName, doctor.LastName, doctor.ContactNumber, doctor.Cpf, doctor.DoctorRegistration);
+        _context.SaveChanges();
     }
 }
 

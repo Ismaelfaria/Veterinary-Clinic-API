@@ -2,7 +2,7 @@
 using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.Infra.Context;
 
-public class DeleteClient : IDeleteClient
+public class DeleteClient : IDeleteClientR
 {
     private readonly ContextVeterinaryClinic _context;
     public DeleteClient(ContextVeterinaryClinic context)

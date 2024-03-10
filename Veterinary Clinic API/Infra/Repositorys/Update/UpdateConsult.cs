@@ -1,18 +1,22 @@
 ﻿using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
 using Veterinary_Clinic_API.Domain.Entitys;
+using Veterinary_Clinic_API.Infra.Context;
 
 namespace Veterinary_Clinic_API.Infra.Repositorys.Update
 {
     public class UpdateConsult : IUpdateConsult
     {
-        public Client Update(string firstName, string lastName, int contactNumber, int cpf, string typeOfAnimal, string nameAnimal, string sexAnimal, int ageAnimal)
+        private readonly ContextVeterinaryClinic _context;
+        public UpdateConsult(ContextVeterinaryClinic context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
-
-        public Consultation Update(int cpfClient, string symptoms, int registerDoctor, List<string> exames, string resultOfTheConsultation)
+        public void Update(Guid id, Consultation consult)
         {
-            throw new NotImplementedException();
+            var userDatabase = _context.Consult.SingleOrDefault(de => de.IdConsultation == id);
+
+            userDatabase.UpdateConsultation(consult.CpfClient, consult.Symptoms, consult.RegisterDoctor, consult.Exames, consult.ResultOfTheConsultation);
+            _context.SaveChanges();
         }
     }
 }

@@ -3,16 +3,41 @@
 using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
 using Veterinary_Clinic_API.Domain.Entitys;
 
-public class GetSecretariat : IGetSecretariat
+public class GetSecretariat : IGetSecretariatR
 {
+
+    private readonly ContextVeterinaryClinic _context;
+    public GetSecretariat(ContextVeterinaryClinic context)
+    {
+        _context = context;
+    }
     public IEnumerable<Secretariat> FindAll()
     {
-        throw new NotImplementedException();
+        var usersDatabase = _context.Secretariat.Where(cl => !cl.IsDeleted).ToList();
+
+        return usersDatabase;
     }
 
-    public Secretariat FindByUserName()
+    public Secretariat FindByCpf(int cpf)
     {
-        throw new NotImplementedException();
+        var userDatabase = _context.Doctor.SingleOrDefault(de => de.Cpf == cpf);
+
+        if (userDatabase == null)
+        {
+            return null;
+        }
+        return userDatabase;
+    }
+
+    public Secretariat FindByUserName(string name)
+    {
+        var userDatabase = _context.Doctor.SingleOrDefault(de => de.FirstName == name);
+
+        if (userDatabase == null)
+        {
+            return null;
+        }
+        return userDatabase;
     }
 }
 
