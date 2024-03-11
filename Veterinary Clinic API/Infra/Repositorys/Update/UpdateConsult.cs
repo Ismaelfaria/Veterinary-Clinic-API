@@ -4,7 +4,7 @@ using Veterinary_Clinic_API.Infra.Context;
 
 namespace Veterinary_Clinic_API.Infra.Repositorys.Update
 {
-    public class UpdateConsult : IUpdateConsult
+    public class UpdateConsult : IUpdateConsultR
     {
         private readonly ContextVeterinaryClinic _context;
         public UpdateConsult(ContextVeterinaryClinic context)

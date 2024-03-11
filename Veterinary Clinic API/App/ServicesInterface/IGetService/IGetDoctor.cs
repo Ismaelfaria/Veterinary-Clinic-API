@@ -5,6 +5,7 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IGetService
     public interface IGetDoctor
     {
         IEnumerable<Doctor> FindAll();
-        Doctor FindByUserName();
+        Doctor FindByUserName(string name);
+        Doctor FindByRegister(int doctorRegister);
     }
 }

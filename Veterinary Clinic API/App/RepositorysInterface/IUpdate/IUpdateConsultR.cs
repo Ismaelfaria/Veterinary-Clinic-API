@@ -2,7 +2,7 @@
 
 namespace Veterinary_Clinic_API.App.RepositorysInterface.IUpdate
 {
-    public interface IUpdateConsult
+    public interface IUpdateConsultR
     {
         void Update(Guid id, Consultation consult);
     }

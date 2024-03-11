@@ -4,6 +4,7 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IUpdateService
 {
     public interface IUpdateConsult
     {
-        void Update(int cpfClient, string symptoms, int registerDoctor, List<string> exames, string resultOfTheConsultation);
+        void Update(Guid id, Consultation consult);
+
     }
 }

@@ -5,6 +5,7 @@ namespace Veterinary_Clinic_API.App.ServicesInterface.IGetService
     public interface IGetSecretariat
     {
         IEnumerable<Secretariat> FindAll();
-        Secretariat FindByUserName();
+        Secretariat FindByUserName(string name);
+        Secretariat FindByCpf(int cpf);
     }
 }
