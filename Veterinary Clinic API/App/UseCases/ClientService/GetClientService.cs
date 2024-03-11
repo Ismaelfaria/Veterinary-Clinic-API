@@ -4,11 +4,11 @@ using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.App.UseCases.ClientService
 {
-    public class GetService : IGetClient
+    public class GetClientService : IGetClient
     {
         private readonly IGetClientR _getRepository;
 
-        public GetService(IGetClientR getRepository)
+        public GetClientService(IGetClientR getRepository)
         {
             _getRepository = getRepository;
         }

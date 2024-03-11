@@ -4,11 +4,11 @@ using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.App.UseCases.ClientService
 {
-    public class CreateConsultService : ICreateClient
+    public class CreateClientService : ICreateClient
     {
         private readonly ICreateClientR _createRepository;
 
-        public CreateConsultService(ICreateClientR createRepository)
+        public CreateClientService(ICreateClientR createRepository)
         {
             _createRepository = createRepository;
         }

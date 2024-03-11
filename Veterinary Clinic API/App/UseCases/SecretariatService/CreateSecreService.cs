@@ -6,9 +6,9 @@ namespace Veterinary_Clinic_API.App.UseCases.SecretariatService
 {
     public class CreateSecreService : ICreateSecretariat
     {
-        private readonly ICreateSecretariat _createRepository;
+        private readonly ICreateSecretariatR _createRepository;
 
-        public CreateSecreService(ICreateSecretariat createRepository)
+        public CreateSecreService(ICreateSecretariatR createRepository)
         {
             _createRepository = createRepository;
         }
@@ -17,6 +17,7 @@ namespace Veterinary_Clinic_API.App.UseCases.SecretariatService
             _createRepository.Create(secretariat);
 
             return secretariat;
+
         }
     }
 }

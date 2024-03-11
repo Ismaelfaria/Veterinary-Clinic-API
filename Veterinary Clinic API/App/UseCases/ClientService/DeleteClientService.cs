@@ -3,11 +3,11 @@ using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
 
 namespace Veterinary_Clinic_API.App.UseCases.ClientService
 {
-    public class DeleteService : IDeleteClient
+    public class DeleteClientService : IDeleteClient
     {
         private readonly IDeleteClientR _deleteRepository;
 
-        public DeleteService(IDeleteClientR deleteRepository)
+        public DeleteClientService(IDeleteClientR deleteRepository)
         {
             _deleteRepository = deleteRepository;
         }

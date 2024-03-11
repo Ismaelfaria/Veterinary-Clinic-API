@@ -4,11 +4,11 @@ using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.App.UseCases.ClientService
 {
-    public class UpdateService : IUpdateClient
+    public class UpdateClientService : IUpdateClient
     {
         private readonly IUpdateClientR _updateRepository;
 
-        public UpdateService(IUpdateClientR updateRepository)
+        public UpdateClientService(IUpdateClientR updateRepository)
         {
             _updateRepository = updateRepository;
         }
