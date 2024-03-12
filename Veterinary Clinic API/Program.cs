@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
 using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
@@ -10,6 +11,7 @@ using Veterinary_Clinic_API.App.UseCases.ClientService;
 using Veterinary_Clinic_API.App.UseCases.ConsultService;
 using Veterinary_Clinic_API.App.UseCases.DoctorService;
 using Veterinary_Clinic_API.App.UseCases.SecretariatService;
+using Veterinary_Clinic_API.Infra.Context;
 using Veterinary_Clinic_API.Infra.Repositorys.Create;
 using Veterinary_Clinic_API.Infra.Repositorys.Delete;
 using Veterinary_Clinic_API.Infra.Repositorys.Get;
@@ -24,8 +26,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Repository
+//DBContext settings
+var ConnectionString = builder.Configuration.GetConnectionString("UserDatabase");
+builder.Services.AddDbContext<ContextVeterinaryClinic>(o => o.UseSqlServer(ConnectionString));
 
+//Repository
 builder.Services.AddScoped<ICreateSecretariatR, CreateSecretariat>();
 builder.Services.AddScoped<ICreateClientR, CreateClient>();
 builder.Services.AddScoped<ICreateConsultR, CreateConsult>();
@@ -47,7 +52,6 @@ builder.Services.AddScoped<IUpdateConsultR, UpdateConsult>();
 builder.Services.AddScoped<IUpdateDoctorR, UpdateDoctor>();
 
 //Use Cases
-
 builder.Services.AddScoped<ICreateSecretariat, CreateSecreService>();
 builder.Services.AddScoped<ICreateClient, CreateClientService>();
 builder.Services.AddScoped<ICreateConsult, CreateConsultService>();

@@ -18,6 +18,11 @@ namespace Veterinary_Clinic_API.App.UseCases.ClientService
             return _getRepository.FindAll();
         }
 
+        public Client FindByCpf(int cpf)
+        {
+            return _getRepository.FindByCpf(cpf);
+        }
+
         public Client FindByUserName(string name)
         {
             return _getRepository.FindByUserName(name);

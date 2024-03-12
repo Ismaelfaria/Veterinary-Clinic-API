@@ -2,6 +2,7 @@
 
 using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
 using Veterinary_Clinic_API.Domain.Entitys;
+using Veterinary_Clinic_API.Infra.Context;
 
 public class GetSecretariat : IGetSecretariatR
 {
@@ -20,7 +21,7 @@ public class GetSecretariat : IGetSecretariatR
 
     public Secretariat FindByCpf(int cpf)
     {
-        var userDatabase = _context.Doctor.SingleOrDefault(de => de.Cpf == cpf);
+        var userDatabase = _context.Secretariat.SingleOrDefault(de => de.Cpf == cpf);
 
         if (userDatabase == null)
         {
@@ -31,7 +32,7 @@ public class GetSecretariat : IGetSecretariatR
 
     public Secretariat FindByUserName(string name)
     {
-        var userDatabase = _context.Doctor.SingleOrDefault(de => de.FirstName == name);
+        var userDatabase = _context.Secretariat.SingleOrDefault(de => de.FirstName == name);
 
         if (userDatabase == null)
         {

@@ -33,7 +33,6 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var allRegistration = _serviceGet.FindAll();
-
                 return Ok(allRegistration);
             }
             catch (Exception ex)
@@ -48,7 +47,20 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var register = _serviceGet.FindByUserName(name);
+                return Ok(register);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(404, $"Erro do GetById(Controller): {ex.Message}");
+            }
+        }
 
+        [HttpGet("{cpf}")]
+        public IActionResult GetByCpf(int cpf)
+        {
+            try
+            {
+                var register = _serviceGet.FindByCpf(cpf);
                 return Ok(register);
             }
             catch (Exception ex)
@@ -63,7 +75,6 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var register = _serviceCreate.Create(client);
-
                 return CreatedAtAction(nameof(GetById), new { id = register.Id }, register);
             }
             catch (Exception ex)
@@ -78,9 +89,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 _serviceUpdate.Update(cpf, client);
-
                 return NoContent();
-
             }
             catch (Exception ex)
             {
@@ -94,7 +103,6 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 _serviceDelete.Delete(id);
-
                 return NoContent();
 
             }
