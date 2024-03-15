@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
 using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
@@ -8,6 +9,7 @@ using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
 {
+    [Authorize(Roles = "Secretaria, Doutor")]
     [Route("api/ClientHome")]
     [ApiController]
     public class ClientController : ControllerBase
@@ -24,8 +26,6 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             _serviceGet = serviceGet;
             _serviceUpdate = serviceUpdate;
         }
-
-
 
         [HttpGet]
         public IActionResult GetAll()

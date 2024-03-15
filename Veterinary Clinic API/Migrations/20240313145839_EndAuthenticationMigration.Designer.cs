@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Veterinary_Clinic_API.Infra.Context;
 
@@ -11,9 +12,11 @@ using Veterinary_Clinic_API.Infra.Context;
 namespace Veterinary_Clinic_API.Migrations
 {
     [DbContext(typeof(ContextVeterinaryClinic))]
-    partial class ContextVeterinaryClinicModelSnapshot : ModelSnapshot
+    [Migration("20240313145839_EndAuthenticationMigration")]
+    partial class EndAuthenticationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

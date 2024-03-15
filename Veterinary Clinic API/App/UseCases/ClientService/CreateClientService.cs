@@ -15,6 +15,8 @@ namespace Veterinary_Clinic_API.App.UseCases.ClientService
 
         public Client Create(Client client)
         {
+            client.Id = Guid.NewGuid();
+
             _createRepository.Create(client);
 
             return client;

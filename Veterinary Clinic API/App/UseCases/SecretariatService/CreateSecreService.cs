@@ -14,10 +14,11 @@ namespace Veterinary_Clinic_API.App.UseCases.SecretariatService
         }
         public Secretariat Create(Secretariat secretariat)
         {
+            secretariat.Id = Guid.NewGuid();
+
             _createRepository.Create(secretariat);
 
             return secretariat;
-
         }
     }
 }

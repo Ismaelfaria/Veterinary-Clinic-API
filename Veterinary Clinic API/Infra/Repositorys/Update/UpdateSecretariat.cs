@@ -13,7 +13,7 @@ public class UpdateSecretariat : IUpdateSecretariatR
     public void Update(Guid id, Secretariat secretariat)
     {
         var userDatabase = _context.Secretariat.SingleOrDefault(de => de.Id == id);
-        userDatabase.UpdateSecretariat(secretariat.FirstName, secretariat.LastName, secretariat.ContactNumber, secretariat.Cpf);
+        userDatabase.UpdateSecretariat(secretariat.UserName, secretariat.ContactNumber, secretariat.Cpf);
         _context.SaveChanges();
     }
 }

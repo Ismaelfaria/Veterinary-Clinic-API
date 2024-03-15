@@ -7,21 +7,19 @@
             IsDeleted = false;
         }
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
         public int ContactNumber { get; set; }
         public int Cpf { get; set; }
         public DateTime DateofRegistration { get; set; }
         public bool IsDeleted { get; set; }
 
-        public void UpdateSecretariat(string firstName, string lastName, int contactNumber, int cpf)
+        public void UpdateSecretariat(string firstName, int contactNumber, int cpf)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            UserName = firstName;
             ContactNumber = contactNumber;
             Cpf = cpf;
-
-
         }
         public void DeleteSecretariat()
         {

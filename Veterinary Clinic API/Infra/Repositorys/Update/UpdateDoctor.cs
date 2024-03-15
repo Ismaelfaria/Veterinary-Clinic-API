@@ -14,7 +14,7 @@ public class UpdateDoctor : IUpdateDoctorR
     public void Update(Guid id, Doctor doctor)
     {
         var userDatabase = _context.Doctor.SingleOrDefault(de => de.Id == id);
-        userDatabase.UpdateDoctor(doctor.FirstName, doctor.LastName, doctor.ContactNumber, doctor.Cpf, doctor.DoctorRegistration);
+        userDatabase.UpdateDoctor(doctor.UserName, doctor.ContactNumber, doctor.Cpf, doctor.DoctorRegistration);
         _context.SaveChanges();
     }
 }

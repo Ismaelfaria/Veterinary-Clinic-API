@@ -32,7 +32,7 @@ public class GetSecretariat : IGetSecretariatR
 
     public Secretariat FindByUserName(string name)
     {
-        var userDatabase = _context.Secretariat.SingleOrDefault(de => de.FirstName == name);
+        var userDatabase = _context.Secretariat.SingleOrDefault(de => de.UserName == name);
 
         if (userDatabase == null)
         {

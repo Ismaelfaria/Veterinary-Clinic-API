@@ -34,6 +34,8 @@ namespace Veterinary_Clinic_API.App.UseCases.ConsultService
                 return null;
             }
 
+            consult.IdConsultation = Guid.NewGuid();
+
             _createRepository.Create(consult);
 
             return consult;

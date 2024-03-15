@@ -31,7 +31,7 @@ public class GetDoctor : IGetDoctorR
 
     public Doctor FindByUserName(string name)
     {
-        var userDatabase = _context.Doctor.SingleOrDefault(de => de.FirstName == name);
+        var userDatabase = _context.Doctor.SingleOrDefault(de => de.UserName == name);
 
         if (userDatabase == null)
         {

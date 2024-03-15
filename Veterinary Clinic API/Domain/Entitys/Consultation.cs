@@ -27,6 +27,5 @@
         {
             ConsultationTerminated = true;
         }
-
     }
 }

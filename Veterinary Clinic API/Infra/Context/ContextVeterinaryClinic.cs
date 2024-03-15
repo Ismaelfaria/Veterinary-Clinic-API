@@ -12,6 +12,7 @@ namespace Veterinary_Clinic_API.Infra.Context
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Secretariat> Secretariat { get; set; }
         public DbSet<Consultation> Consult { get; set; }
+        public DbSet<Admin> Admin { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,11 @@ namespace Veterinary_Clinic_API.Infra.Context
                 e.ToTable("Secretariat");
             });
 
+            modelBuilder.Entity<Admin>(e =>
+            {
+                e.HasKey(de => de.Id);
+                e.ToTable("Admin");
+            });
             modelBuilder.Entity<Consultation>(e =>
             {
                 e.HasKey(de => de.IdConsultation);

@@ -14,6 +14,8 @@ namespace Veterinary_Clinic_API.App.UseCases.DoctorService
         }
         public Doctor Create(Doctor doctor)
         {
+            doctor.Id = Guid.NewGuid();
+
             _createRepository.Create(doctor);
 
             return doctor;
