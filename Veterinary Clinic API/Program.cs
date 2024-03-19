@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -18,6 +19,8 @@ using Veterinary_Clinic_API.App.UseCases.ConsultService;
 using Veterinary_Clinic_API.App.UseCases.DoctorService;
 using Veterinary_Clinic_API.App.UseCases.SecretariatService;
 using Veterinary_Clinic_API.App.UseCases.Token;
+using Veterinary_Clinic_API.App.Validator;
+using Veterinary_Clinic_API.Domain.Entitys;
 using Veterinary_Clinic_API.Infra.Context;
 using Veterinary_Clinic_API.Infra.Repositorys.Create;
 using Veterinary_Clinic_API.Infra.Repositorys.Delete;
@@ -132,6 +135,13 @@ builder.Services.AddScoped<IGetAdminS, GetAdminService>();
 builder.Services.AddScoped<ITokenServiceD, TokenDoctorService>();
 builder.Services.AddScoped<ITokenServiceS, TokenSecretariatService>();
 builder.Services.AddScoped<ITokenService, TokenAdminService>();
+
+//Validator
+builder.Services.AddTransient<IValidator<Doctor>, ValidatorDoctor>();
+builder.Services.AddTransient<IValidator<Client>, ValidatorClient>();
+builder.Services.AddTransient<IValidator<Consultation>, ValidatorConsult>();
+builder.Services.AddTransient<IValidator<Secretariat>, ValidatorSecret>();
+
 
 var app = builder.Build();
 
