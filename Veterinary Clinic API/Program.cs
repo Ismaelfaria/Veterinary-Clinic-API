@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Veterinary_Clinic_API.App.Mapping.Profilers;
 using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
 using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
@@ -141,6 +142,13 @@ builder.Services.AddTransient<IValidator<Doctor>, ValidatorDoctor>();
 builder.Services.AddTransient<IValidator<Client>, ValidatorClient>();
 builder.Services.AddTransient<IValidator<Consultation>, ValidatorConsult>();
 builder.Services.AddTransient<IValidator<Secretariat>, ValidatorSecret>();
+
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(AdminProfile));
+builder.Services.AddAutoMapper(typeof(ClientProfile));
+builder.Services.AddAutoMapper(typeof(DoctorProfile));
+builder.Services.AddAutoMapper(typeof(ConsultProfile));
+builder.Services.AddAutoMapper(typeof(SecretProfile));
 
 
 var app = builder.Build();

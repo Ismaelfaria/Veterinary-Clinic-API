@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Veterinary_Clinic_API.App.Mapping.Models.InputModels;
+using Veterinary_Clinic_API.App.Mapping.Models.ViewModels;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
 using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
 using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
@@ -16,13 +19,15 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         private readonly IDeleteDoctor _serviceDelete;
         private readonly IGetDoctor _serviceGet;
         private readonly IUpdateDoctor _serviceUpdate;
+        private readonly IMapper _mapper;
 
-        public DoctorController(ICreateDoctor serviceCreate, IDeleteDoctor serviceDelete, IGetDoctor serviceGet, IUpdateDoctor serviceUpdate)
+        public DoctorController(ICreateDoctor serviceCreate, IDeleteDoctor serviceDelete, IGetDoctor serviceGet, IUpdateDoctor serviceUpdate, IMapper mapper)
         {
             _serviceCreate = serviceCreate;
             _serviceDelete = serviceDelete;
             _serviceGet = serviceGet;
             _serviceUpdate = serviceUpdate;
+            _mapper = mapper;
         }
 
 
@@ -33,7 +38,10 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var allRegistration = _serviceGet.FindAll();
-                return Ok(allRegistration);
+
+                var mapp = _mapper.Map<List<ViewDoctor>>(allRegistration);
+
+                return Ok(mapp);
             }
             catch (Exception ex)
             {
@@ -46,7 +54,10 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var allRegistration = _serviceGet.FindByRegister(registro);
-                return Ok(allRegistration);
+
+                var mapp = _mapper.Map<ViewDoctor>(allRegistration);
+
+                return Ok(mapp);
             }
             catch (Exception ex)
             {
@@ -60,7 +71,10 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var register = _serviceGet.FindByUserName(name);
-                return Ok(register);
+
+                var mapp = _mapper.Map<ViewDoctor>(register);
+
+                return Ok(mapp);
             }
             catch (Exception ex)
             {
@@ -69,11 +83,13 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreatingRegistry([FromForm] Doctor doctor)
+        public IActionResult CreatingRegistry([FromForm] InputDoctor doctor)
         {
             try
             {
-                var register = _serviceCreate.Create(doctor);
+                var mapp = _mapper.Map<Doctor>(doctor);
+
+                var register = _serviceCreate.Create(mapp);
                 return CreatedAtAction(nameof(GetByRegister), new { registro = register.DoctorRegistration }, register);
             }
             catch (Exception ex)
@@ -83,11 +99,13 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateRegistry([FromForm] Guid id, Doctor doctor)
+        public IActionResult UpdateRegistry([FromForm] Guid id, InputDoctor doctor)
         {
             try
             {
-                _serviceUpdate.Update(id, doctor);
+                var mapp = _mapper.Map<Doctor>(doctor);
+
+                _serviceUpdate.Update(id, mapp);
                 return NoContent();
             }
             catch (Exception ex)

@@ -23,9 +23,6 @@ namespace Veterinary_Clinic_API.App.Validator
             RuleFor(d => d.DoctorRegistration)
                .NotEmpty().WithMessage("O campo registro não pode estar vazio");
 
-
-
         }
-
     }
 }
