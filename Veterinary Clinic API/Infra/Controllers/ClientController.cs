@@ -12,7 +12,7 @@ using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
 {
-    [Authorize(Roles = "Secretaria, Doutor")]
+    [Authorize(Roles = "Secretaria, Doutor, Adm")]
     [Route("api/ClientHome")]
     [ApiController]
     public class ClientController : ControllerBase

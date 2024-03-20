@@ -2,7 +2,7 @@
 
 namespace Veterinary_Clinic_API.App.ServicesInterface.Token
 {
-    public interface ITokenService
+    public interface ITokenServiceA
     {
         string GenerateToken(LoginDto login);
     }

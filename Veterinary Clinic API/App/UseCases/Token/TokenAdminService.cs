@@ -8,7 +8,7 @@ using Veterinary_Clinic_API.App.ServicesInterface.Token;
 
 namespace Veterinary_Clinic_API.App.UseCases.Token
 {
-    public class TokenAdminService : ITokenService
+    public class TokenAdminService : ITokenServiceA
     {
         private readonly IConfiguration _configuration;
         private readonly IGetAdminR _respositoryUser;

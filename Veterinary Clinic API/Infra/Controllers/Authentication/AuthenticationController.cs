@@ -11,11 +11,13 @@ namespace Veterinary_Clinic_API.Infra.Controllers.Authentication
     {
         private readonly ITokenServiceS _tokenSecretary;
         private readonly ITokenServiceD _tokenDoctor;
+        private readonly ITokenServiceA _tokenAdm;
 
-        public AuthenticationController(ITokenServiceS tokenSecretary, ITokenServiceD tokenDoctor)
+        public AuthenticationController(ITokenServiceS tokenSecretary, ITokenServiceD tokenDoctor, ITokenServiceA tokenAdm)
         {
             _tokenSecretary = tokenSecretary;
             _tokenDoctor = tokenDoctor;
+            _tokenAdm = tokenAdm;
         }
 
         [HttpPost("AuthenticationSecretary")]
@@ -33,7 +35,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers.Authentication
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro de criação por parte do servidor(Controller): {ex.Message}");
+                return StatusCode(500, $"Erro na criação de token: {ex.Message}");
             }
 
         }
@@ -53,7 +55,26 @@ namespace Veterinary_Clinic_API.Infra.Controllers.Authentication
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro de criação por parte do servidor(Controller): {ex.Message}");
+                return StatusCode(500, $"Erro na criação de token: {ex.Message}");
+            }
+        }
+
+        [HttpPost("AuthenticationAdmin")]
+        public IActionResult LoginAdmin([FromForm] LoginDto login)
+        {
+            try
+            {
+                var token = _tokenAdm.GenerateToken(login);
+
+                if (token == "")
+                {
+                    return Unauthorized();
+                }
+                return Ok(token);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro na criação de token: {ex.Message}");
             }
         }
     }

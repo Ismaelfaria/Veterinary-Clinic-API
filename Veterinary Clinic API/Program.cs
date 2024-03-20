@@ -135,7 +135,7 @@ builder.Services.AddScoped<IGetAdminS, GetAdminService>();
 //Jwt
 builder.Services.AddScoped<ITokenServiceD, TokenDoctorService>();
 builder.Services.AddScoped<ITokenServiceS, TokenSecretariatService>();
-builder.Services.AddScoped<ITokenService, TokenAdminService>();
+builder.Services.AddScoped<ITokenServiceA, TokenAdminService>();
 
 //Validator
 builder.Services.AddTransient<IValidator<Doctor>, ValidatorDoctor>();
