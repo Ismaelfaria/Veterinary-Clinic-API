@@ -43,9 +43,6 @@ namespace Veterinary_Clinic_API.App.UseCases.ConsultService
             {
                 return null;
             }
-            consult.ConsultationRegister = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-            consult.IdConsultation = Guid.NewGuid();
 
             _createRepository.Create(consult);
 

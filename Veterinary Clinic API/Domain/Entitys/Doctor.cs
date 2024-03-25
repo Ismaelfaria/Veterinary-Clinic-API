@@ -4,17 +4,20 @@
     {
         public Doctor()
         {
+            DateofRegistration = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            Id = Guid.NewGuid();
+
             IsDeleted = false;
         }
-        public Guid Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public Guid Id { get; private set; }
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
         public string Role { get; set; }
-        public int ContactNumber { get; set; }
-        public int Cpf { get; set; }
-        public int DoctorRegistration { get; set; }
-        public DateTime DateofRegistration { get; set; }
-        public bool IsDeleted { get; set; }
+        public int ContactNumber { get; private set; }
+        public int Cpf { get; private set; }
+        public int DoctorRegistration { get; private set; }
+        public DateTime DateofRegistration { get; private set; }
+        public bool IsDeleted { get; private set; }
         public void UpdateDoctor(string firstName, int contactNumber, int cpf, int doctorRegistration)
         {
             UserName = firstName;
@@ -26,5 +29,6 @@
         {
             IsDeleted = true;
         }
+        
     }
 }

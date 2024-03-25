@@ -25,10 +25,6 @@ namespace Veterinary_Clinic_API.App.UseCases.ClientService
                 throw new ValidationException("Erro de validação ao criar um Client", validator.Errors);
             }
 
-            client.DateofRegistration = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-            client.Id = Guid.NewGuid();
-
             _createRepository.Create(client);
 
             return client;

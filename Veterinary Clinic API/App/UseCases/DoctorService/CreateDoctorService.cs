@@ -26,10 +26,6 @@ namespace Veterinary_Clinic_API.App.UseCases.DoctorService
                 throw new ValidationException("Erro de validação ao criar um Doutor", validator.Errors);
             }
 
-            doctor.DateofRegistration = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-            doctor.Id = Guid.NewGuid();
-
             doctor.Role = roleDoctor; 
 
             _createRepository.Create(doctor);

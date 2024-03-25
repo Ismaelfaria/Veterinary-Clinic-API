@@ -25,10 +25,6 @@ namespace Veterinary_Clinic_API.App.UseCases.SecretariatService
                 throw new ValidationException("Erro de validação ao criar uma Secretaria", validator.Errors);
             }
 
-            secretariat.DateofRegistration = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-            secretariat.Id = Guid.NewGuid();
-
             secretariat.Role = roleSecret;
 
             _createRepository.Create(secretariat);
