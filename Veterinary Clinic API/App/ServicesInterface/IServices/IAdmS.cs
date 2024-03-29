@@ -2,8 +2,9 @@
 
 namespace Veterinary_Clinic_API.App.ServicesInterface.ICreateService
 {
-    public interface ICreateDoctor
+    public interface IAdmS
     {
-        Doctor Create(Doctor doctor);
+        Admin admCreate(Admin admin);
+        Admin FindByUserName(string name);
     }
 }

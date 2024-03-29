@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veterinary_Clinic_API.App.Mapping.Models.InputModels;
 using Veterinary_Clinic_API.App.Mapping.Models.ViewModels;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
-using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
-using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
-using Veterinary_Clinic_API.App.ServicesInterface.IUpdateService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
@@ -17,18 +13,12 @@ namespace Veterinary_Clinic_API.Infra.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly ICreateClient _serviceCreate;
-        private readonly IDeleteClient _serviceDelete;
-        private readonly IGetClient _serviceGet;
-        private readonly IUpdateClient _serviceUpdate;
+        private readonly IClient _serviceClient;
         private readonly IMapper _mapper;
 
-        public ClientController(ICreateClient serviceCreate, IDeleteClient serviceDelete, IGetClient serviceGet, IUpdateClient serviceUpdate, IMapper mapper)
+        public ClientController(IClient serviceClient, IMapper mapper)
         {
-            _serviceCreate = serviceCreate;
-            _serviceDelete = serviceDelete;
-            _serviceGet = serviceGet;
-            _serviceUpdate = serviceUpdate;
+            _serviceClient = serviceClient;
             _mapper = mapper;
         }
 
@@ -37,8 +27,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-            
-                var allRegistration = _serviceGet.FindAll();
+                var allRegistration = _serviceClient.FindAll();
 
                 var mapp = _mapper.Map<List<ViewClient>>(allRegistration);
 
@@ -55,7 +44,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var register = _serviceGet.FindByUserName(name);
+                var register = _serviceClient.FindByUserName(name);
 
                 var mapp = _mapper.Map<ViewClient>(register);
 
@@ -72,7 +61,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var register = _serviceGet.FindByCpf(cpf);
+                var register = _serviceClient.FindByCpf(cpf);
 
                 var mapp = _mapper.Map<ViewClient>(register);
 
@@ -91,7 +80,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Client>(client);
 
-                var register = _serviceCreate.Create(mapp);
+                var register = _serviceClient.Create(mapp);
                 return CreatedAtAction(nameof(GetById), new { id = register.Id }, register);
             }
             catch (Exception ex)
@@ -107,7 +96,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Client>(client);
 
-                _serviceUpdate.Update(cpf, mapp);
+                _serviceClient.Update(cpf, mapp);
                 return NoContent();
             }
             catch (Exception ex)
@@ -121,7 +110,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                _serviceDelete.Delete(id);
+                _serviceClient.Delete(id);
                 return NoContent();
 
             }

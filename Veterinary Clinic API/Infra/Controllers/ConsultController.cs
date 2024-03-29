@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veterinary_Clinic_API.App.Mapping.Models.InputModels;
 using Veterinary_Clinic_API.App.Mapping.Models.ViewModels;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
-using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
-using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
-using Veterinary_Clinic_API.App.ServicesInterface.IUpdateService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
@@ -17,18 +13,12 @@ namespace Veterinary_Clinic_API.Infra.Controllers
     [ApiController]
     public class ConsultController : ControllerBase
     {
-        private readonly ICreateConsult _serviceCreate;
-        private readonly IDeleteConsult _serviceDelete;
-        private readonly IGetConsult _serviceGet;
-        private readonly IUpdateConsult _serviceUpdate;
+        private readonly IConsult _serviceConsult;
         private readonly IMapper _mapper;
 
-        public ConsultController(ICreateConsult serviceCreate, IDeleteConsult serviceDelete, IGetConsult serviceGet, IUpdateConsult serviceUpdate, IMapper mapper)
+        public ConsultController(IConsult serviceConsult, IMapper mapper)
         {
-            _serviceCreate = serviceCreate;
-            _serviceDelete = serviceDelete;
-            _serviceGet = serviceGet;
-            _serviceUpdate = serviceUpdate;
+            _serviceConsult = serviceConsult;
             _mapper = mapper;
         }
 
@@ -38,7 +28,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var allRegistration = _serviceGet.FindAll();
+                var allRegistration = _serviceConsult.FindAll();
 
                 var mapp = _mapper.Map<List<ViewConsultation>>(allRegistration);
 
@@ -55,7 +45,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var register = _serviceGet.FindByIdConsult(id);
+                var register = _serviceConsult.FindByIdConsult(id);
 
                 var mapp = _mapper.Map<ViewConsultation>(register);
 
@@ -74,7 +64,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Consultation>(consult);
 
-                var register = _serviceCreate.Create(mapp);
+                var register = _serviceConsult.Create(mapp);
                 return CreatedAtAction(nameof(GetById), new { id = register.IdConsultation }, register);
             }
             catch (Exception ex)
@@ -89,7 +79,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             try
             {
                 var mapp = _mapper.Map<Consultation>(consult);
-                _serviceUpdate.Update(id, mapp);
+                _serviceConsult.Update(id, mapp);
                 return NoContent();
             }
             catch (Exception ex)
@@ -103,7 +93,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                _serviceDelete.DeleteAndTerminated(id);
+                _serviceConsult.DeleteAndTerminated(id);
                 return NoContent();
 
             }

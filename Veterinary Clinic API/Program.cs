@@ -10,9 +10,6 @@ using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
 using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
 using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
-using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
-using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
-using Veterinary_Clinic_API.App.ServicesInterface.IUpdateService;
 using Veterinary_Clinic_API.App.ServicesInterface.Token;
 using Veterinary_Clinic_API.App.UseCases.Adm;
 using Veterinary_Clinic_API.App.UseCases.ClientService;
@@ -110,27 +107,11 @@ builder.Services.AddScoped<IUpdateConsultR, UpdateConsult>();
 builder.Services.AddScoped<IUpdateDoctorR, UpdateDoctor>();
 
 //Use Cases
-builder.Services.AddScoped<ICreateSecretariat, CreateSecreService>();
-builder.Services.AddScoped<ICreateClient, CreateClientService>();
-builder.Services.AddScoped<ICreateConsult, CreateConsultService>();
-builder.Services.AddScoped<ICreateDoctor, CreateDoctorService>();
-builder.Services.AddScoped<ICreateAdmS, CreateAdmS>();
-
-builder.Services.AddScoped<IDeleteSecretariat, DeleteSecreService>();
-builder.Services.AddScoped<IDeleteClient, DeleteClientService>();
-builder.Services.AddScoped<IDeleteConsult, DeleteConsultService>();
-builder.Services.AddScoped<IDeleteDoctor, DeleteDoctorService>();
-
-builder.Services.AddScoped<IUpdateSecretariat, UpdateSecreService>();
-builder.Services.AddScoped<IUpdateClient, UpdateClientService>();
-builder.Services.AddScoped<IUpdateConsult, UpdateConsultService>();
-builder.Services.AddScoped<IUpdateDoctor, UpdateDoctorService>();
-
-builder.Services.AddScoped<IGetSecretariat, GetSecreService>();
-builder.Services.AddScoped<IGetClient, GetClientService>();
-builder.Services.AddScoped<IGetConsult, GetConsultService>();
-builder.Services.AddScoped<IGetDoctor, GetDoctorService>();
-builder.Services.AddScoped<IGetAdminS, GetAdminService>();
+builder.Services.AddScoped<ISecretariat, SecreService>();
+builder.Services.AddScoped<IClient, ClientServiceS>();
+builder.Services.AddScoped<IConsult, ConsultServiceS>();
+builder.Services.AddScoped<IDoctor, DoctorService>();
+builder.Services.AddScoped<IAdmS, AdmS>();
 
 //Jwt
 builder.Services.AddScoped<ITokenServiceD, TokenDoctorService>();

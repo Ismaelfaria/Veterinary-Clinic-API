@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Veterinary_Clinic_API.App.Mapping.Models.InputModels;
 using Veterinary_Clinic_API.App.Mapping.Models.ViewModels;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
-using Veterinary_Clinic_API.App.ServicesInterface.IDeleteService;
-using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
-using Veterinary_Clinic_API.App.ServicesInterface.IUpdateService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
@@ -17,18 +14,12 @@ namespace Veterinary_Clinic_API.Infra.Controllers
     [ApiController]
     public class SecretariaController : ControllerBase
     {
-        private readonly ICreateSecretariat _serviceCreate;
-        private readonly IDeleteSecretariat _serviceDelete;
-        private readonly IGetSecretariat _serviceGet;
-        private readonly IUpdateSecretariat _serviceUpdate;
+        private readonly ISecretariat _serviceSecre;
         private readonly IMapper _mapper;
 
-        public SecretariaController(ICreateSecretariat serviceCreate, IDeleteSecretariat serviceDelete, IGetSecretariat serviceGet, IUpdateSecretariat serviceUpdate, IMapper mapper)
+        public SecretariaController(ISecretariat serviceSecre, IMapper mapper)
         {
-            _serviceCreate = serviceCreate;
-            _serviceDelete = serviceDelete;
-            _serviceGet = serviceGet;
-            _serviceUpdate = serviceUpdate;
+            _serviceSecre = serviceSecre;
             _mapper = mapper;
         }
 
@@ -37,7 +28,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var allRegistration = _serviceGet.FindAll();
+                var allRegistration = _serviceSecre.FindAll();
 
                 var mapp = _mapper.Map<List<ViewSecretariat>>(allRegistration);
 
@@ -53,7 +44,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var Registration = _serviceGet.FindByCpf(cpf);
+                var Registration = _serviceSecre.FindByCpf(cpf);
 
                 var mapp = _mapper.Map<ViewDoctor>(Registration);
 
@@ -70,7 +61,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                var register = _serviceGet.FindByUserName(name);
+                var register = _serviceSecre.FindByUserName(name);
 
                 var mapp = _mapper.Map<ViewDoctor>(register);
 
@@ -89,7 +80,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Secretariat>(secret);
 
-                var register = _serviceCreate.Create(mapp);
+                var register = _serviceSecre.Create(mapp);
                 return CreatedAtAction(nameof(GetByCpf), new { cpf = register.Cpf }, register);
             }
             catch (Exception ex)
@@ -105,7 +96,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Secretariat>(secret);
 
-                _serviceUpdate.Update(id, mapp);
+                _serviceSecre.Update(id, mapp);
                 return NoContent();
             }
             catch (Exception ex)
@@ -119,7 +110,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         {
             try
             {
-                _serviceDelete.Delete(id);
+                _serviceSecre.Delete(id);
                 return NoContent();
 
             }

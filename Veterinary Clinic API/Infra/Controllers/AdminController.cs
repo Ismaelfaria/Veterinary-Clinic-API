@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Veterinary_Clinic_API.App.Mapping.Models.InputModels;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
-using Veterinary_Clinic_API.App.ServicesInterface.IGetService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
 namespace Veterinary_Clinic_API.Infra.Controllers
@@ -11,14 +10,12 @@ namespace Veterinary_Clinic_API.Infra.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly ICreateAdmS _serviceCreate;
-        private readonly IGetAdminS _serviceGet;
+        private readonly IAdmS _serviceAdm;
         private readonly IMapper _mapper;
 
-        public AdminController(ICreateAdmS serviceCreate, IGetAdminS serviceGet, IMapper mapper)
+        public AdminController(IAdmS serviceAdm, IMapper mapper)
         {
-            _serviceCreate = serviceCreate;
-            _serviceGet = serviceGet;
+            _serviceAdm = serviceAdm;
             _mapper = mapper;
         }
 
@@ -29,7 +26,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
             {
                 var mapp = _mapper.Map<Admin>(admin);
 
-                var register = _serviceCreate.admCreate(mapp);
+                var register = _serviceAdm.admCreate(mapp);
                 return Created();
             }
             catch (Exception ex)
