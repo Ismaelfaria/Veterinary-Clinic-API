@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
-using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
-using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
-using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
-using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
+using Veterinary_Clinic_API.App.RepositorysInterface;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
@@ -10,32 +7,26 @@ namespace Veterinary_Clinic_API.App.UseCases.ConsultService
 {
     public class ConsultServiceS : IConsult
     {
-        private readonly IUpdateConsultR _updateRepository;
-        private readonly IGetConsultR _getRepository;
-        private readonly ICreateConsultR _createRepository;
-        private readonly IDeleteConsultR _deleteRepository;
-        private readonly IGetClientR _getClientRepository;
-        private readonly IGetDoctorR _getDoctorRepository;
+        private readonly IConsultRepository _consult;
+        private readonly IClientRepository _client;
+        private readonly IDoctorRepository _doctor;
         private readonly IValidator<Consultation> _validator;
 
-        public ConsultServiceS(IUpdateConsultR updateRepository, IGetConsultR getRepository, IDeleteConsultR deleteRepository, ICreateConsultR createRepository, IGetClientR getClientRepository, IGetDoctorR getDoctorRepository, IValidator<Consultation> validator)
+        public ConsultServiceS(IConsultRepository consult, IClientRepository client, IDoctorRepository doctor, IValidator<Consultation> validator)
         {
-            _createRepository = createRepository;
-            _updateRepository = updateRepository;
-            _getRepository = getRepository;
-            _deleteRepository = deleteRepository;
-            _getClientRepository = getClientRepository;
-            _getDoctorRepository = getDoctorRepository;
+            _consult = consult;
+            _client = client;
+            _doctor = doctor;
             _validator = validator;
         }
         public IEnumerable<Consultation> FindAll()
         {
-            return _getRepository.FindAll();
+            return _consult.FindAll();
         }
 
         public Consultation FindByIdConsult(Guid id)
         {
-            return _getRepository.FindByIdConsult(id);
+            return _consult.FindByIdConsult(id);
         }
         public Consultation Create(Consultation consult)
         {
@@ -46,31 +37,31 @@ namespace Veterinary_Clinic_API.App.UseCases.ConsultService
                 throw new ValidationException("Erro de validação ao criar uma Consulta", validator.Errors);
             }
 
-            var clientDatabase = _getClientRepository.FindByCpf(consult.CpfClient);
+            var clientDatabase = _client.FindByCpf(consult.CpfClient);
 
             if (clientDatabase == null)
             {
                 return null;
             }
 
-            var doctorDatabase = _getDoctorRepository.FindByRegister(consult.RegisterDoctor);
+            var doctorDatabase = _doctor.FindByRegister(consult.RegisterDoctor);
 
             if (doctorDatabase == null)
             {
                 return null;
             }
 
-            _createRepository.Create(consult);
+            _consult.Create(consult);
 
             return consult;
         }
         public void Update(Guid id, Consultation consult)
         {
-            _updateRepository.Update(id, consult);
+            _consult.Update(id, consult);
         }
         public void DeleteAndTerminated(Guid idConsultation)
         {
-            _deleteRepository.DeleteAndTerminated(idConsultation);
+            _consult.DeleteAndTerminated(idConsultation);
         }
     }
 }

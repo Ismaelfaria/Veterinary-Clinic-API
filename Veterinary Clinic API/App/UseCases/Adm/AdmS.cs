@@ -1,7 +1,6 @@
 ﻿
 using System.Numerics;
-using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
-using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
+using Veterinary_Clinic_API.App.RepositorysInterface;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
 using Veterinary_Clinic_API.Domain.Entitys;
 
@@ -9,13 +8,11 @@ namespace Veterinary_Clinic_API.App.UseCases.Adm
 {
     public class AdmS : IAdmS
     {
-        private readonly ICreateAdmR _createRepository;
-        private readonly IGetAdminR _getRepository;
+        private readonly IAdminRepository _admin;
 
-        public AdmS(ICreateAdmR createRepository, IGetAdminR getRepository)
+        public AdmS(IAdminRepository admin)
         {
-            _createRepository = createRepository;
-            _getRepository = getRepository;
+            _admin = admin;
         }
 
         public Admin admCreate(Admin admin)
@@ -26,13 +23,13 @@ namespace Veterinary_Clinic_API.App.UseCases.Adm
 
             admin.Role = roleAdm;
 
-            _createRepository.Create(admin);
+            _admin.Create(admin);
 
             return admin;
         }
         public Admin FindByUserName(string name)
         {
-            return _getRepository.FindByUserName(name);
+            return _admin.FindByUserName(name);
         }
     }
 }

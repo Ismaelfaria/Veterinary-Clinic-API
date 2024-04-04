@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Veterinary_Clinic_API.App.Dto;
-using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
+using Veterinary_Clinic_API.App.RepositorysInterface;
 using Veterinary_Clinic_API.App.ServicesInterface.Token;
 
 namespace Veterinary_Clinic_API.App.UseCases.Token
@@ -11,12 +11,12 @@ namespace Veterinary_Clinic_API.App.UseCases.Token
     public class TokenDoctorService : ITokenServiceD
     {
         private readonly IConfiguration _configuration;
-        private readonly IGetDoctorR _respositoryUser;
+        private readonly IDoctorRepository _respositoryUser;
 
-        public TokenDoctorService(IConfiguration configuration, IGetDoctorR respositoryByUserName)
+        public TokenDoctorService(IConfiguration configuration, IDoctorRepository doctor)
         {
             _configuration = configuration;
-            _respositoryUser = respositoryByUserName;
+            _respositoryUser = doctor;
         }
 
         public string GenerateToken(LoginDto login)

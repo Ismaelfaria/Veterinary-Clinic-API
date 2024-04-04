@@ -5,10 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Veterinary_Clinic_API.App.Mapping.Profilers;
-using Veterinary_Clinic_API.App.RepositorysInterface.ICreate;
-using Veterinary_Clinic_API.App.RepositorysInterface.IDelete;
-using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
-using Veterinary_Clinic_API.App.RepositorysInterface.IUpdate;
+using Veterinary_Clinic_API.App.RepositorysInterface;
 using Veterinary_Clinic_API.App.ServicesInterface.ICreateService;
 using Veterinary_Clinic_API.App.ServicesInterface.Token;
 using Veterinary_Clinic_API.App.UseCases.Adm;
@@ -20,10 +17,7 @@ using Veterinary_Clinic_API.App.UseCases.Token;
 using Veterinary_Clinic_API.App.Validator;
 using Veterinary_Clinic_API.Domain.Entitys;
 using Veterinary_Clinic_API.Infra.Context;
-using Veterinary_Clinic_API.Infra.Repositorys.Create;
-using Veterinary_Clinic_API.Infra.Repositorys.Delete;
-using Veterinary_Clinic_API.Infra.Repositorys.Get;
-using Veterinary_Clinic_API.Infra.Repositorys.Update;
+using Veterinary_Clinic_API.Infra.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,27 +78,11 @@ var ConnectionString = builder.Configuration.GetConnectionString("UserDatabase")
 builder.Services.AddDbContext<ContextVeterinaryClinic>(o => o.UseSqlServer(ConnectionString));
 
 //Repository
-builder.Services.AddScoped<ICreateSecretariatR, CreateSecretariat>();
-builder.Services.AddScoped<ICreateClientR, CreateClient>();
-builder.Services.AddScoped<ICreateConsultR, CreateConsult>();
-builder.Services.AddScoped<ICreateDoctorR, CreateDoctor>();
-builder.Services.AddScoped<ICreateAdmR, CreateAdm>();
-
-builder.Services.AddScoped<IDeleteSecretariatR, DeleteSecretariat>();
-builder.Services.AddScoped<IDeleteClientR, DeleteClient>();
-builder.Services.AddScoped<IDeleteConsultR, DeleteCosult>();
-builder.Services.AddScoped<IDeleteDoctorR, DeleteDoctor>();
-
-builder.Services.AddScoped<IGetSecretariatR, GetSecretariat>();
-builder.Services.AddScoped<IGetClientR, GetClient>();
-builder.Services.AddScoped<IGetConsultR, GetConsult>();
-builder.Services.AddScoped<IGetDoctorR, GetDoctor>();
-builder.Services.AddScoped<IGetAdminR, GetAdmin>();
-
-builder.Services.AddScoped<IUpdateSecretariatR, UpdateSecretariat>();
-builder.Services.AddScoped<IUpdateClientR, UpdateClient>();
-builder.Services.AddScoped<IUpdateConsultR, UpdateConsult>();
-builder.Services.AddScoped<IUpdateDoctorR, UpdateDoctor>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IConsultRepository, ConsultRepository>();
+builder.Services.AddScoped<ISecretariatRepository, SecretariatRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 //Use Cases
 builder.Services.AddScoped<ISecretariat, SecreService>();

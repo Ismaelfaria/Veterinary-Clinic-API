@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Veterinary_Clinic_API.App.Dto;
-using Veterinary_Clinic_API.App.RepositorysInterface.IGet;
+using Veterinary_Clinic_API.App.RepositorysInterface;
 using Veterinary_Clinic_API.App.ServicesInterface.Token;
 
 
@@ -12,9 +12,9 @@ namespace Veterinary_Clinic_API.App.UseCases.Token
     public class TokenSecretariatService : ITokenServiceS
     {
         private readonly IConfiguration _configuration;
-        private readonly IGetSecretariatR _respositoryUser;
+        private readonly ISecretariatRepository _respositoryUser;
 
-        public TokenSecretariatService(IConfiguration configuration, IGetSecretariatR respositoryByUserName)
+        public TokenSecretariatService(IConfiguration configuration, ISecretariatRepository respositoryByUserName)
         {
             _configuration = configuration;
             _respositoryUser = respositoryByUserName;
