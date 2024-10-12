@@ -74,6 +74,7 @@ namespace Veterinary_Clinic_API.Infra.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult CreatingRegistry([FromForm] InputClient client)
         {
             try

@@ -17,6 +17,7 @@ using Veterinary_Clinic_API.App.UseCases.Token;
 using Veterinary_Clinic_API.App.Validator;
 using Veterinary_Clinic_API.Domain.Entitys;
 using Veterinary_Clinic_API.Infra.Context;
+using Veterinary_Clinic_API.Infra.Menssaging;
 using Veterinary_Clinic_API.Infra.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -90,6 +93,9 @@ builder.Services.AddScoped<IClient, ClientServiceS>();
 builder.Services.AddScoped<IConsult, ConsultServiceS>();
 builder.Services.AddScoped<IDoctor, DoctorService>();
 builder.Services.AddScoped<IAdmS, AdmS>();
+
+//RabbitMQ
+builder.Services.AddScoped<IMessageBusService, RabbitMqService>();
 
 //Jwt
 builder.Services.AddScoped<ITokenServiceD, TokenDoctorService>();
